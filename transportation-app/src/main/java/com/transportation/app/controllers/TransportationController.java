@@ -31,14 +31,14 @@ public class TransportationController {
 	}
 
 	//based 2 locations I want to return next journeys
-	@GetMapping("/journeys/")
-	List<Journey> nextJourneys() {
-		List<Journey> journeys = new ArrayList<Journey>();
-		Journey j1 = new Journey("BUS", 51.658607, 5.371466, "Den Dungen, Dungens Molen",
-				"Den Bosch");
-		journeys.add(j1);
-		return journeys;
-		}
+//	@GetMapping("/test-journeys/")
+//	List<Journey> nextJourneys() {
+//		List<Journey> journeys = new ArrayList<Journey>();
+//		Journey j1 = new Journey("BUS", 51.658607, 5.371466, "Den Dungen, Dungens Molen",
+//				"Den Bosch");
+//		journeys.add(j1);
+//		return journeys;
+//		}
 	
 	//http://v0.ovapi.nl/tpc/63150020,63150050
 	
