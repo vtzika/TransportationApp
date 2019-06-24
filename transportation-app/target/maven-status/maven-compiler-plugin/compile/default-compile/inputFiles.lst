@@ -1,6 +1,8 @@
 /Users/varvaratzika/eclipse-workspace/TransportationApp/transportation-app/src/main/java/com/transportation/app/Location.java
 /Users/varvaratzika/eclipse-workspace/TransportationApp/transportation-app/src/main/java/com/transportation/app/LocationRepository.java
 /Users/varvaratzika/eclipse-workspace/TransportationApp/transportation-app/src/main/java/com/transportation/app/LoadDatabase.java
+/Users/varvaratzika/eclipse-workspace/TransportationApp/transportation-app/src/main/java/com/transportation/app/TestDataReader.java
+/Users/varvaratzika/eclipse-workspace/TransportationApp/transportation-app/src/main/java/com/transportation/app/Journey.java
 /Users/varvaratzika/eclipse-workspace/TransportationApp/transportation-app/src/main/java/com/transportation/app/TransportationResources.java
 /Users/varvaratzika/eclipse-workspace/TransportationApp/transportation-app/src/main/java/com/transportation/app/TransportationApp.java
 /Users/varvaratzika/eclipse-workspace/TransportationApp/transportation-app/src/main/java/com/transportation/app/LocationNotFoundException.java

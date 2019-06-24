@@ -2,6 +2,8 @@ com/transportation/app/LocationRepository.class
 com/transportation/app/LocationNotFoundException.class
 com/transportation/app/TransportationResources.class
 com/transportation/app/Location.class
+com/transportation/app/Journey.class
 com/transportation/app/TransportationApp.class
 com/transportation/app/TransportationController.class
 com/transportation/app/LoadDatabase.class
+com/transportation/app/TestDataReader.class
