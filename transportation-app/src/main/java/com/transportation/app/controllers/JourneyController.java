@@ -23,5 +23,5 @@ public class JourneyController {
     public Iterable<Journey> list() {
         return journeyService.list();
     }
-    
+  
 }
