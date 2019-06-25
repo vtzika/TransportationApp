@@ -12,11 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @EnableAutoConfiguration
 public class TransportationController {
 
-	/*@Autowired
-	private final LocationRepository repository;
-*/
 	TransportationController() {
-		//this.repository = repository;
 	}
 
 
@@ -40,7 +36,6 @@ public class TransportationController {
 //		return journeys;
 //		}
 	
-	//http://v0.ovapi.nl/tpc/63150020,63150050
 	
 
 	@RequestMapping("/")

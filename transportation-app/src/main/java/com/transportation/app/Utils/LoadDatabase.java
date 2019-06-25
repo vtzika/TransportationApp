@@ -17,6 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.http.ResponseEntity;
 
 @Configuration
 class LoadDatabase {
@@ -35,7 +37,8 @@ class LoadDatabase {
 			j1.setArrival_stop_name("Den Bosch");
 			repository.save(j1);
 
-			readDataFromJSON(repository);
+			callTimepointAPI();
+			// readDataFromJSON(repository);
 		};
 	}
 
@@ -63,5 +66,12 @@ class LoadDatabase {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void callTimepointAPI() {
+		RestTemplate restTemplate = new RestTemplate();
+		String fooResourceUrl = "http://v0.ovapi.nl/tpc/";
+		ResponseEntity<String> response = restTemplate.getForEntity(fooResourceUrl + "/63150020,63150050", String.class);
+		System.out.println("Data: "+ response.getBody());
 	}
 }
