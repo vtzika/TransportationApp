@@ -35,22 +35,57 @@ class LoadDatabase {
 			j1.setArrival_stop_name("Den Bosch");
 			repository.save(j1);
 
-			readDataFromJSON();
+			readDataFromJSON(repository);
 		};
 	}
 
-	public void readDataFromJSON() {
+	public void readDataFromJSON(JourneyRepository repository) {
 		JSONParser parser = new JSONParser();
 		try {
- 
+
 			File myFile = new File("testData.json");
 			System.out.println("Attempting to read from file in: " + myFile.getCanonicalPath());
 			Object obj = parser.parse(new FileReader(myFile.getCanonicalPath()));
 
 			JSONObject jsonObject = (JSONObject) obj;
 
-			JSONObject initial = (JSONObject) jsonObject.get("63150050");
-			System.out.println("initial: " + initial);
+			JSONObject timePoint = (JSONObject) jsonObject.get("63150050");
+			// System.out.println("timePoint: " + timePoint);
+
+			JSONObject stop = (JSONObject) timePoint.get("Stop");
+			// System.out.println("stop: " + stop);
+
+			JSONObject passes = (JSONObject) timePoint.get("Passes");
+			System.out.println("passes: " + passes);
+
+			Double latitude = (Double) stop.get("Latitude");
+			System.out.println("latitude: " + latitude);
+
+			Double longitude = (Double) stop.get("Longitude");
+			System.out.println("Longitude: " + longitude);
+
+			String departure_stop_name = (String) stop.get("TimingPointName");
+			System.out.println("Departure_stop_name: " + departure_stop_name);
+
+			for (Iterator iterator = passes.keySet().iterator(); iterator.hasNext();) {
+				String key = (String) iterator.next();
+				JSONObject pass = (JSONObject) passes.get(key);
+				String arrival_stop_name = (String) pass.get("TimingPointName");
+				System.out.println("Arrival_stop_name: " + arrival_stop_name);
+				
+				String type = (String) pass.get("TransportType");
+				System.out.println("TransportType: " + type);
+				
+				Journey j1 = new Journey();
+				j1.setType(type);
+				j1.setLatitude(latitude);
+				j1.setLongitude(longitude);
+				j1.setDeparture_stop_name(departure_stop_name);
+				j1.setArrival_stop_name(arrival_stop_name);
+				repository.save(j1);
+			}
+			
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
