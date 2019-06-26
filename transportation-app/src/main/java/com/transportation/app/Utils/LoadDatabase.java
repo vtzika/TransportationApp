@@ -19,6 +19,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.ResponseEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @Configuration
 class LoadDatabase {
@@ -37,7 +39,7 @@ class LoadDatabase {
 			j1.setArrival_stop_name("Den Bosch");
 			repository.save(j1);
 
-			callTimepointAPI();
+			callTimepointAPI(repository);
 			// readDataFromJSON(repository);
 		};
 	}
@@ -56,11 +58,7 @@ class LoadDatabase {
 			for (Iterator iterator = passes.keySet().iterator(); iterator.hasNext();) {
 				String key = (String) iterator.next();
 				JSONObject pass = (JSONObject) passes.get(key);
-				JourneyPass journeyPass = new JourneyPass();
-				journeyPass.createJourneyPassFromJson(pass);
-				Journey j1 = new Journey();
-				j1.createJourneyFromJson(timePoint);
-				repository.save(j1);
+				createJourneyFromJson(timePoint, pass, repository);
 			}
 
 		} catch (Exception e) {
@@ -68,10 +66,42 @@ class LoadDatabase {
 		}
 	}
 
-	public void callTimepointAPI() {
+	public void createJourneyFromJson(JSONObject timePoint, JSONObject pass, JourneyRepository repository) {
+		JourneyPass journeyPass = new JourneyPass();
+		journeyPass.createJourneyPassFromJson(pass);
+		Journey j1 = new Journey();
+		j1.createJourneyFromJson(timePoint);
+		repository.save(j1);
+	}
+
+	public void callTimepointAPI(JourneyRepository repository) {
 		RestTemplate restTemplate = new RestTemplate();
-		String fooResourceUrl = "http://v0.ovapi.nl/tpc/";
-		ResponseEntity<String> response = restTemplate.getForEntity(fooResourceUrl + "/63150020,63150050", String.class);
-		System.out.println("Data: "+ response.getBody());
+		String resourceUrl = "http://v0.ovapi.nl/tpc/";
+		ResponseEntity<String> response = restTemplate.getForEntity(resourceUrl + "/63150020,63150050", String.class);
+		System.out.println("Status code from TPC API call: " + response.getStatusCode());
+		String body = response.getBody();
+		System.out.println("Body Response: " + body);
+		System.out.println("-------------");
+
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			JsonNode tpcNode = mapper.readTree(body);
+			System.out.println("TPC value: " + tpcNode);
+			System.out.println("-------------");
+			JsonNode timePointNode = tpcNode.path("63150050");
+			System.out.println("TimePointNode value: " + timePointNode);
+			System.out.println("-------------");
+			JsonNode pass = timePointNode.path("Passes");
+			System.out.println("Passes: " + pass);
+			System.out.println("-------------");
+			JourneyPass journeyPass = new JourneyPass();
+			journeyPass.createJourneyPassFromJsonNode(pass);
+			// TODO:
+//			Journey j1 = new Journey();
+//			j1.createJourneyFromJsonNode(timePointNode);
+			// repository.save(journeyPass);
+		} catch (Exception e) {
+			System.out.println("Exception: " + e);
+		}
 	}
 }
