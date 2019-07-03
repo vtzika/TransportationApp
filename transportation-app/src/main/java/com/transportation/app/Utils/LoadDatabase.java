@@ -39,8 +39,8 @@ class LoadDatabase {
 			j1.setArrival_stop_name("Den Bosch");
 			repository.save(j1);
 
-			callTimepointAPI(repository);
-			// readDataFromJSON(repository);
+			//callTimepointAPI(repository);
+			readDataFromJSON(repository);
 		};
 	}
 

@@ -1,0 +1,147 @@
+<script language="JavaScript">
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+var from = getUrlVars()["from"];
+var to = getUrlVars()["to"];
+var rdfrom = getUrlVars()["from"];
+var rdto = getUrlVars()["to"];
+if ((from == "from1" && to == "to1") || (from == "from2" && to == "to2") || (from == "from3" && to == "to3") || (from == "from4" && to == "to4")) {  
+window.onload = function() {
+    window.location.href = "index.html?msg=same";
+}
+}
+if (!from) {  
+window.onload = function() {
+    window.location.href = "index.html?msg=f&to="+rdto+"";
+}
+}
+if (!to) { 
+window.onload = function() {
+    window.location.href = "index.html?msg=t&from="+rdfrom+"";
+}
+}
+if (!from && !to) { 
+window.onload = function() {
+    window.location.href = "index.html?msg=ft";
+}
+}
+</script>
+<html>
+<head>
+<LINK rel="StyleSheet" href="main.min.css" type="text/css">
+</head>
+<style type="text/css">
+    @font-face {
+        font-family: 'Roboto Condensed';
+        src: url('/nl/images/Systeem/abnamroGROW/includes/fonts/emerald/woff2/roboto-condensed-regular.woff2') format('woff2'), url('/nl/images/Systeem/abnamroGROW/includes/fonts/emerald/woff/roboto-condensed-regular.woff') format('woff');
+        font-weight: 400;
+    }
+    @font-face {
+        font-family: 'Roboto';
+        src: url('/nl/images/Systeem/abnamroGROW/includes/fonts/emerald/woff2/roboto-light.woff2') format('woff2'), url( '/nl/images/Systeem/abnamroGROW/includes/fonts/emerald/woff/roboto-light.woff') format('woff');
+        font-weight: 300;
+    }
+    @font-face {
+        font-family: 'Roboto';
+        src: url('/nl/images/Systeem/abnamroGROW/includes/fonts/emerald/woff2/roboto-regular.woff2') format('woff2'), url('/nl/images/Systeem/abnamroGROW/includes/fonts/emerald/woff/roboto-regular.woff') format('woff');
+        font-weight: 400;
+    }
+    @font-face {
+        font-family: 'Roboto';
+        src: url('/nl/images/Systeem/abnamroGROW/includes/fonts/emerald/woff2/roboto-medium.woff2') format('woff2'), url('/nl/images/Systeem/abnamroGROW/includes/fonts/emerald/woff/roboto-medium.woff') format('woff');
+        font-weight: 500;
+    }
+</style>
+<body>
+<header>
+<div class="odf-header-segmentnavigation">
+    <!-- Logo -->
+    <div class="odf-header-logo">
+        <a class="odf-tablet-desktop-hidden" href="index.html" data-testid="odf-header-logo-mobile">
+            <img alt="ABN AMRO logo mobile" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIGlkPSdMYXllcl8xJyB2aWV3Qm94PScwIDAgNjMuOCA4NS4xJz48c3R5bGU+IC5zdDB7ZmlsbDojRkZGRkZGO30gLnN0MXtmaWxsOiNGRkQwNDY7fSAuc3Qye2ZpbGw6IzAwOUM5NTt9IDwvc3R5bGU+PHBhdGggZD0nTS4xLjFoNjMuNnY1M0wzMS45IDg0LjkuMSA1My4xeicgY2xhc3M9J3N0MCcvPjxwYXRoIGQ9J002My44IDUzLjJMMzEuOSA4NS4xbC0uMS0uMlYyMS4xTDYzLjcgNTN6JyBjbGFzcz0nc3QxJy8+PHBhdGggZD0nTTAgMGg2My44djUzLjJMMzEuOSAyMS4zdjYzLjhMMCA1My4yeicgY2xhc3M9J3N0MicvPjwvc3ZnPg==">
+        </a>
+<a class="odf-mobile-hidden odf-desktop-hidden" href="index.html" data-testid="odf-header-logo-tablet">
+<img alt="ABN AMRO logo tablet" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIGlkPSdMYWFnXzEnIHZpZXdCb3g9JzAgMCAzMDUuNSA3NS42Jz48c3R5bGU+IC5zdDB7ZmlsbDojRkZGRkZGO30gLnN0MXtmaWxsOiNGREI4Mjc7fSAuc3Qye2ZpbGw6IzAwOUQ5Njt9IC5zdDN7ZmlsbDojODg4QThDO30gPC9zdHlsZT48cGF0aCBkPSdNLjEuMWg1Ni40djQ3LjFMMjguMyA3NS40LjEgNDcuMnonIGNsYXNzPSdzdDAnLz48cGF0aCBkPSdNNTYuNyA0Ny4yTDI4LjMgNzUuNmwtLjEtLjRWMTguNmwyOC4zIDI4LjN6JyBjbGFzcz0nc3QxJy8+PHBhdGggZD0nTTAgMGg1Ni43djQ3LjJMMjguMyAxOC45djU2LjdMMCA0Ny4yeicgY2xhc3M9J3N0MicvPjxwYXRoIGQ9J004Mi44IDM3LjhsMS45LTcuM0g5NGwxLjggNy4zaDcuMkw5NC4xIDVoLTlMNzYgMzcuOGg2Ljh6bTkuNy0xMi4zSDg2bDMuMS0xNC4yaC4xbDMuMyAxNC4yem0yMy4zLTIuMWg0YzMuNSAwIDQuNSAxLjggNC41IDQuNyAwIDQuNi0zLjMgNC42LTQuNyA0LjZoLTMuOHYtOS4zem0wLTEzLjRoNC4yYzIuMyAwIDQgMS44IDQgNC4yIDAgMy4yLTIuMSA0LjItMy42IDQuMmgtNC42VjEwem01LjMgMjcuOGMyLjkgMCAxMC4xLS40IDEwLjEtOC43IDAtNC41LTEuMy03LjYtNi4xLTguM3YtLjFjMy43LS43IDUuNi0zLjUgNS42LTcuMiAwLTctNC4zLTguNS05LjUtOC41SDEwOXYzMi44aDEyLjF6bTI0LjUgMHYtMjRoLjFsOSAyNGg5VjVoLTYuNHYyMi43aC0uMUwxNDguNSA1aC05LjN2MzIuOHptMjguOS0xNC41bDQuNC00LjQtNC40LTQuNC00LjQgNC40em0xMy40IDE0LjVsMS45LTcuM2g5LjRsMS44IDcuM2g3LjJsLTktMzIuOGgtOWwtOS4xIDMyLjhoNi44em05LjctMTIuM2gtNi41bDMuMS0xNC4yaC4xbDMuMyAxNC4yem0yMi45IDEyLjNWMTIuNWguMWw2IDI1LjNoNi41bDYuMy0yNS4zaC4xdjI1LjNoNi43VjVoLTEwLjdsLTUuNCAyMi4zaC0uMUwyMjQuOCA1aC0xMXYzMi44ek0yNjIuMSAxMGgzYzIuMiAwIDMuNSAxLjIgMy41IDQuMyAwIDIuMS0uOCA0LjgtMy41IDQuOGgtM1YxMHptMCAxNC4yaDEuOGM1LjMgMCA0LjkgMy4zIDQuOSA3LjIgMCAyLjEtLjIgNC40LjcgNi40aDYuN2MtLjYtMS40LS44LTcuNS0uOC05LjYgMC01LjktNC41LTYuMy02LTYuNXYtLjFjNC41LS43IDYuMS0zLjkgNi4xLTggMC01LjYtMy04LjYtNy43LTguNmgtMTIuN3YzMi44aDYuOVYyNC4yem0zMiA5LjJjLTMuOSAwLTQuNC0zLjYtNC40LTEycy41LTEyIDQuNC0xMmMzLjkgMCA0LjQgMy42IDQuNCAxMnMtLjUgMTItNC40IDEyem0wIDQuOWMxMS4zIDAgMTEuMy04LjQgMTEuMy0xNyAwLTguNyAwLTE3LTExLjMtMTdzLTExLjMgOC4zLTExLjMgMTcgMCAxNyAxMS4zIDE3eicgY2xhc3M9J3N0MycvPjwvc3ZnPg==">
+</a>
+        <a class="odf-mobile-tablet-hidden" href="index.html" data-testid="odf-header-logo-desktop">
+<img alt="ABN AMRO logo desktop" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIGlkPSdMYWFnXzEnIHZpZXdCb3g9JzAgMCAzMDUuNSA3NS42Jz48c3R5bGU+IC5zdDB7ZmlsbDojRkZGRkZGO30gLnN0MXtmaWxsOiNGREI4Mjc7fSAuc3Qye2ZpbGw6IzAwOUQ5Njt9IC5zdDN7ZmlsbDojODg4QThDO30gPC9zdHlsZT48cGF0aCBkPSdNLjEuMWg1Ni40djQ3LjFMMjguMyA3NS40LjEgNDcuMnonIGNsYXNzPSdzdDAnLz48cGF0aCBkPSdNNTYuNyA0Ny4yTDI4LjMgNzUuNmwtLjEtLjRWMTguNmwyOC4zIDI4LjN6JyBjbGFzcz0nc3QxJy8+PHBhdGggZD0nTTAgMGg1Ni43djQ3LjJMMjguMyAxOC45djU2LjdMMCA0Ny4yeicgY2xhc3M9J3N0MicvPjxwYXRoIGQ9J004Mi44IDM3LjhsMS45LTcuM0g5NGwxLjggNy4zaDcuMkw5NC4xIDVoLTlMNzYgMzcuOGg2Ljh6bTkuNy0xMi4zSDg2bDMuMS0xNC4yaC4xbDMuMyAxNC4yem0yMy4zLTIuMWg0YzMuNSAwIDQuNSAxLjggNC41IDQuNyAwIDQuNi0zLjMgNC42LTQuNyA0LjZoLTMuOHYtOS4zem0wLTEzLjRoNC4yYzIuMyAwIDQgMS44IDQgNC4yIDAgMy4yLTIuMSA0LjItMy42IDQuMmgtNC42VjEwem01LjMgMjcuOGMyLjkgMCAxMC4xLS40IDEwLjEtOC43IDAtNC41LTEuMy03LjYtNi4xLTguM3YtLjFjMy43LS43IDUuNi0zLjUgNS42LTcuMiAwLTctNC4zLTguNS05LjUtOC41SDEwOXYzMi44aDEyLjF6bTI0LjUgMHYtMjRoLjFsOSAyNGg5VjVoLTYuNHYyMi43aC0uMUwxNDguNSA1aC05LjN2MzIuOHptMjguOS0xNC41bDQuNC00LjQtNC40LTQuNC00LjQgNC40em0xMy40IDE0LjVsMS45LTcuM2g5LjRsMS44IDcuM2g3LjJsLTktMzIuOGgtOWwtOS4xIDMyLjhoNi44em05LjctMTIuM2gtNi41bDMuMS0xNC4yaC4xbDMuMyAxNC4yem0yMi45IDEyLjNWMTIuNWguMWw2IDI1LjNoNi41bDYuMy0yNS4zaC4xdjI1LjNoNi43VjVoLTEwLjdsLTUuNCAyMi4zaC0uMUwyMjQuOCA1aC0xMXYzMi44ek0yNjIuMSAxMGgzYzIuMiAwIDMuNSAxLjIgMy41IDQuMyAwIDIuMS0uOCA0LjgtMy41IDQuOGgtM1YxMHptMCAxNC4yaDEuOGM1LjMgMCA0LjkgMy4zIDQuOSA3LjIgMCAyLjEtLjIgNC40LjcgNi40aDYuN2MtLjYtMS40LS44LTcuNS0uOC05LjYgMC01LjktNC41LTYuMy02LTYuNXYtLjFjNC41LS43IDYuMS0zLjkgNi4xLTggMC01LjYtMy04LjYtNy43LTguNmgtMTIuN3YzMi44aDYuOVYyNC4yem0zMiA5LjJjLTMuOSAwLTQuNC0zLjYtNC40LTEycy41LTEyIDQuNC0xMmMzLjkgMCA0LjQgMy42IDQuNCAxMnMtLjUgMTItNC40IDEyem0wIDQuOWMxMS4zIDAgMTEuMy04LjQgMTEuMy0xNyAwLTguNyAwLTE3LTExLjMtMTdzLTExLjMgOC4zLTExLjMgMTcgMCAxNyAxMS4zIDE3eicgY2xhc3M9J3N0MycvPjwvc3ZnPg==">
+ </a>
+        <a class="odf-header-logo-user odf-tablet-desktop-hidden odf-hidden" href="#" data-testid="odf-header-logo-user-mobile">
+            <img alt="My banking" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJMYXllcl8xIiB2aWV3Qm94PSIwIDAgNTAgNTAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUwIDUwIj48c3R5bGU+LnN0MHtmaWxsOiNGM0MwMDA7fSAuc3Qxe2ZpbHRlcjp1cmwoI0Fkb2JlX09wYWNpdHlNYXNrRmlsdGVyKTt9IC5zdDJ7ZmlsbDojRkZGRkZGO30gLnN0M3ttYXNrOnVybCgjbWFzay0yKTtmaWxsOnVybCgjUmVjdGFuZ2xlLTNfMV8pO30gLnN0NHtmaWx0ZXI6dXJsKCNmaWx0ZXItNSk7fTwvc3R5bGU+PGZpbHRlciBpZD0iZmlsdGVyLTUiIHdpZHRoPSIxMDQuMiUiIGhlaWdodD0iMTA0LjIlIiB4PSItMi4xJSIgeT0iLTIuMSUiIGZpbHRlclVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCI+PGZlT2Zmc2V0IGR4PSIxIiBkeT0iMSIgaW49IlNvdXJjZUFscGhhIiByZXN1bHQ9InNoYWRvd09mZnNldElubmVyMSIvPjxmZUNvbXBvc2l0ZSBpbj0ic2hhZG93T2Zmc2V0SW5uZXIxIiBpbjI9IlNvdXJjZUFscGhhIiBrMj0iLTEiIGszPSIxIiBvcGVyYXRvcj0iYXJpdGhtZXRpYyIgcmVzdWx0PSJzaGFkb3dJbm5lcklubmVyMSIvPjxmZUNvbG9yTWF0cml4IGluPSJzaGFkb3dJbm5lcklubmVyMSIgdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwLjA4IDAiLz48L2ZpbHRlcj48dGl0bGU+R3JvdXAgMzwvdGl0bGU+PGcgaWQ9IlBhZ2UtMSI+PGcgaWQ9Ikdyb3VwLTMiPjxnIGlkPSJHcm91cC0yIj48ZyBpZD0iTWFzayI+PHBhdGggaWQ9InBhdGgtMV8xXyIgZD0iTTAgMGg1MHY1MEgweiIgY2xhc3M9InN0MCIvPjwvZz48ZGVmcz48ZmlsdGVyIGlkPSJBZG9iZV9PcGFjaXR5TWFza0ZpbHRlciIgd2lkdGg9IjkyLjkiIGhlaWdodD0iOTIuOSIgeD0iLTEyLjkiIHk9Ii0xMy41IiBmaWx0ZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMSAwIDAgMCAwIDAgMSAwIDAgMCAwIDAgMSAwIDAgMCAwIDAgMSAwIi8+PC9maWx0ZXI+PC9kZWZzPjxtYXNrIGlkPSJtYXNrLTIiIHdpZHRoPSI5Mi45IiBoZWlnaHQ9IjkyLjkiIHg9Ii0xMi45IiB5PSItMTMuNSIgbWFza1VuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PGcgY2xhc3M9InN0MSI+PHBhdGggaWQ9InBhdGgtMSIgZD0iTTAgMGg1MHY1MEgweiIgY2xhc3M9InN0MiIvPjwvZz48L21hc2s+PGxpbmVhckdyYWRpZW50IGlkPSJSZWN0YW5nbGUtM18xXyIgeDE9Ii00NjAuMDYiIHgyPSItNDYwLjE0IiB5MT0iNTI1LjE4IiB5Mj0iNTI1Ljg3IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgZ3JhZGllbnRUcmFuc2Zvcm09InJvdGF0ZSg0NSAtNjMxNzQuMzcgNjQzMi4yMzgpIHNjYWxlKDUwIC04MS40MjI0KSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDA5Mjg2Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDE4NDc5Ii8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBpZD0iUmVjdGFuZ2xlLTMiIGQ9Ik00NC42LTEzLjVMODAgMjEuOSAyMi40IDc5LjRsLTM1LjMtMzUuM3oiIGNsYXNzPSJzdDMiLz48L2c+PGcgaWQ9IlNoYXBlIj48cGF0aCBpZD0icGF0aC00IiBkPSJNMzMgMzYuNmMtMS44LjMtNCAuNC04IC40cy02LjItLjEtOC0uNGMtMi41LS40LTQtMS4zLTQtMi45IDAtMiAyLjYtNC44IDYuMi02LjQgMS41IDIuMiAzLjUgMy43IDUuOCAzLjdzNC4zLTEuNSA1LjgtMy43YzMuNiAxLjYgNi4yIDQuNCA2LjIgNi40IDAgMS42LTEuNSAyLjUtNCAyLjl6TTI1IDI5Yy0zLjMgMC02LTQuNC02LTguOSAwLTQuMiAyLjUtNy4xIDYtNy4xczYgMi44IDYgNy4xYzAgNC41LTIuNyA4LjktNiA4Ljl6IiBjbGFzcz0ic3QyIi8+PGcgY2xhc3M9InN0NCI+PHBhdGggaWQ9InBhdGgtNF8yXyIgZD0iTTMzIDM2LjZjLTEuOC4zLTQgLjQtOCAuNHMtNi4yLS4xLTgtLjRjLTIuNS0uNC00LTEuMy00LTIuOSAwLTIgMi42LTQuOCA2LjItNi40IDEuNSAyLjIgMy41IDMuNyA1LjggMy43czQuMy0xLjUgNS44LTMuN2MzLjYgMS42IDYuMiA0LjQgNi4yIDYuNCAwIDEuNi0xLjUgMi41LTQgMi45ek0yNSAyOWMtMy4zIDAtNi00LjQtNi04LjkgMC00LjIgMi41LTcuMSA2LTcuMXM2IDIuOCA2IDcuMWMwIDQuNS0yLjcgOC45LTYgOC45eiIvPjwvZz48L2c+PC9nPjwvZz48L3N2Zz4=">
+        </a>
+</div>
+ <div class="odf-header-container">
+</div>    
+</div>
+<div class="odf-nav-wrapper">
+                                <nav class="odf-nav-container" role="navigation">
+        <div class="odf-nav-pills">
+            <ul class="odf-nav-menu odf-nav-menu-scrollable" role="menubar">
+            <li class="odf-nav-menu-item " data-testid="menu-item">
+                <a href="#" role="menuitem" aria-haspopup="true" target="_parent">Result</a>
+                </li>
+          </ul>
+</div>
+</div>
+</header>
+<table align="center" width="50%">
+<script language="JavaScript">
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+var from = getUrlVars()["from"];
+var to = getUrlVars()["to"];
+if (from == 'from1') { var from = "Foppingadreef 22"; }
+if (from == 'from2') { var from = "Gustav Mahlerlaan"; }
+if (from == 'from3') { var from = "CCA Noord"; }
+if (from == 'from4') { var from = "CCA Zuid"; }
+if (to == 'to1') { var to = "Foppingadreef 22"; }
+if (to == 'to2') { var to = "Gustav Mahlerlaan"; }
+if (to == 'to3') { var to = "CCA Noord"; }
+if (to == 'to4') { var to = "CCA Zuid"; }
+document.write("<tr><td>From<br>" + from + "</td><td></td><td>To<br>" + to + "</td></tr>");
+</script>
+<tr><td></td><td>
+
+
+<!-- START API VARVARA -->
+
+<div id="APIVarvara" src='#'>
+Best route: API RESULTS
+</div>
+
+<!-- END API VARVARA -->
+
+<td></td></tr>
+</table>
+<br><br>
+<footer>
+<div>
+<section class="odf-footer-upperdoormat">
+	<div class="odf-upperdoormat maincontent">
+		<div class="odf-upperdoormat-service odf-mobile-tablet-hidden">
+		</div>
+		<div class="odf-upperdoormat-contact">
+	</div>
+</section>
+</div>
+<div>
+<section class="odf-footer-doormat odf-mobile-hidden">
+	<div class="odf-doormat ods-expandable" data-expandable="">
+		<div class="ods-expandable-content">
+		</div>
+	</div>
+</section>
+</div>
+</footer>
+</body>
+</html>
