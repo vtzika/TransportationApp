@@ -76,7 +76,8 @@ class LoadDatabase {
 
 	public void callTimepointAPI(JourneyRepository repository) {
 		RestTemplate restTemplate = new RestTemplate();
-		String resourceUrl = "http://v0.ovapi.nl/tpc/";
+		String resourceUrl = "http://v0.ovapi.nl/tpc"
+				+ "/";
 		ResponseEntity<String> response = restTemplate.getForEntity(resourceUrl + "/63150020,63150050", String.class);
 		System.out.println("Status code from TPC API call: " + response.getStatusCode());
 		String body = response.getBody();
