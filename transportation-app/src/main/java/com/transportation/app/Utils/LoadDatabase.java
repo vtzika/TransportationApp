@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sound.sampled.Line;
+
 import java.io.InputStream;
 import java.io.IOException;
 import java.lang.Exception;
@@ -26,21 +29,22 @@ import com.fasterxml.jackson.databind.JsonNode;
 class LoadDatabase {
 
 	@Bean
-	CommandLineRunner initDatabase(JourneyRepository repository) {
+	CommandLineRunner initDatabase(JourneyLineRepository repository) {
 		return args -> {
 
-			System.out.println("loading journey data...");
-			List<Journey> journeys = new ArrayList<Journey>();
-			Journey j1 = new Journey();
-			j1.setType("BUS");
-			j1.setLatitude(51.658607);
-			j1.setLongitude(51.658607);
-			j1.setDeparture_stop_name("Den Dungen, Dungens Molen");
-			j1.setArrival_stop_name("Den Bosch");
-			repository.save(j1);
+//			System.out.println("loading journey data...");
+//			List<Journey> journeys = new ArrayList<Journey>();
+//			Journey j1 = new Journey();
+//			j1.setType("BUS");
+//			j1.setLatitude(51.658607);
+//			j1.setLongitude(51.658607);
+//			j1.setDeparture_stop_name("Den Dungen, Dungens Molen");
+//			j1.setArrival_stop_name("Den Bosch");
+//			repository.save(j1);
 
 			//callTimepointAPI(repository);
-			readDataFromJSON(repository);
+			//readDataFromJSON(repository);
+			getAllLines(repository);
 		};
 	}
 
@@ -101,6 +105,35 @@ class LoadDatabase {
 //			Journey j1 = new Journey();
 //			j1.createJourneyFromJsonNode(timePointNode);
 			// repository.save(journeyPass);
+		} catch (Exception e) {
+			System.out.println("Exception: " + e);
+		}
+	}
+	
+	public void getAllLines(JourneyLineRepository repository) {
+		RestTemplate restTemplate = new RestTemplate();
+		String resourceUrl = "http://v0.ovapi.nl/line/";
+		ResponseEntity<String> response = restTemplate.getForEntity(resourceUrl, String.class);
+		System.out.println("Status code from Line API call: " + response.getStatusCode());
+		String body = response.getBody();
+
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			JsonNode lineJson = mapper.readTree(body);
+			Iterator<String> fieldNames = lineJson.fieldNames();
+			List<JourneyLine> lines = new ArrayList<JourneyLine>();
+			while (fieldNames.hasNext())
+			{
+				String lineCode = fieldNames.next();
+				JsonNode lineNode = lineJson.path(lineCode);
+				String destinationName = lineNode.path("DestinationName50").asText();
+				JourneyLine line = new JourneyLine();
+				line.setCode(lineCode);
+				line.setDestinationName(destinationName);
+				lines.add(line);
+			}
+			repository.save(lines);
+			
 		} catch (Exception e) {
 			System.out.println("Exception: " + e);
 		}

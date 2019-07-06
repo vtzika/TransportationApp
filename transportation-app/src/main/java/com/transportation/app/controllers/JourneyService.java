@@ -14,10 +14,18 @@ public class JourneyService {
 	@Autowired
     private JourneyRepository journeyRepository;
 
+	@Autowired
+    private JourneyLineRepository lineRepository;
 
     public Iterable<Journey> list() {
         return journeyRepository.findAll();
     }
+    
+    public Iterable<JourneyLine> lines() {
+    	System.out.println("HEREEEEEE");
+        return lineRepository.findAll();
+    }
+
 
     public Iterable<Journey> save(List<Journey> journeys) {
         return journeyRepository.save(journeys);
