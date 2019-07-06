@@ -1,36 +1,5 @@
-<script language="JavaScript">
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-var from = getUrlVars()["from"];
-var to = getUrlVars()["to"];
-var rdfrom = getUrlVars()["from"];
-var rdto = getUrlVars()["to"];
-if ((from == "from1" && to == "to1") || (from == "from2" && to == "to2") || (from == "from3" && to == "to3") || (from == "from4" && to == "to4")) {  
-window.onload = function() {
-    window.location.href = "index.html?msg=same";
-}
-}
-if (!from) {  
-window.onload = function() {
-    window.location.href = "index.html?msg=f&to="+rdto+"";
-}
-}
-if (!to) { 
-window.onload = function() {
-    window.location.href = "index.html?msg=t&from="+rdfrom+"";
-}
-}
-if (!from && !to) { 
-window.onload = function() {
-    window.location.href = "index.html?msg=ft";
-}
-}
-</script>
+<script src="journeys.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <html>
 <head>
 <LINK rel="StyleSheet" href="main.min.css" type="text/css">
@@ -114,8 +83,11 @@ document.write("<tr><td>From<br>" + from + "</td><td></td><td>To<br>" + to + "</
 
 
 <!-- START API VARVARA -->
+<body onLoad="buildHtmlTable('#excelDataTable')">
+  <table id="excelDataTable" border="1">
+  </table>
+</body>
 
-<div id="APIVarvara" src='#'>
 Best route: API RESULTS
 </div>
 

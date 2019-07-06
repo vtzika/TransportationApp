@@ -6,6 +6,9 @@ function getUrlVars() {
     });
     return vars;
 }
+
+
+
 var msg = getUrlVars()["msg"];
 var from = getUrlVars()["from"];
 var to = getUrlVars()["to"];
@@ -71,7 +74,7 @@ var to = getUrlVars()["to"];
 </div>
 </header>
 <table align="center" width="50%">
-<form action='resultaat.html' method="GET" id='api' name='api'>
+<form method="GET" action='resultaat.html' id='api' name='api'>
 <tr><td valign='top'>From:<br>
 <script language="JavaScript">
 if (from == 'from1') { document.write("<input type='radio' name='from' id='from' value='from1' checked>Foppingadreef 22</input><br>"); } else { document.write("<input type='radio' name='from' id='from' value='from1'>Foppingadreef 22</input><br>"); }
