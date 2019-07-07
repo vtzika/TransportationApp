@@ -2,7 +2,8 @@ package com.transportation.app;
 
 
 import java.util.List;
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.util.Map;  
 
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
@@ -27,9 +28,12 @@ public class JourneyController {
         return journeyService.list();
     }
   
-    @RequestMapping("/journey")
-    public Iterable<Journey> journey(@RequestParam(value="arrival", defaultValue="") String arrival, @RequestParam(value="destination", defaultValue="") String destination) {
-    	System.out.println("HERE IT IS" + arrival);
+    @RequestMapping(value = "/journey", method = RequestMethod.POST)
+    public Iterable<Journey> journey(@RequestParam(value="arrival", defaultValue="") String arrival, @RequestParam(value="destination", defaultValue="") String destination, @RequestBody Map<String, String> body) {
+    	if(arrival.equals("")) {
+        	arrival = body.get("arrival");
+        	destination = body.get("destination");
+    	}
     	return journeyService.findByLocations(arrival, destination);
     }
   

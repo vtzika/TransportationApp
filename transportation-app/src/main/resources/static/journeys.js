@@ -56,36 +56,25 @@ console.log("TO: ", to)
 
 var params = '{"arrival": "' + from + '", "destination": "'+ to + '"}';
 
-var request = new XMLHttpRequest();
-request.open('POST', 'http://localhost:8080/journeys/journey', true);
-request.setRequestHeader("Content-Type", "application/json");
+var hardcodeJourneys = "";
+var hardcodeJourneysJSON = "";
 
-request.onload = function () {
-var journeys = JSON.parse(this.response);
- console.log("JOURNEYS");
- console.log(journeys);
-}
-request.send(params);
+ function buildHtmlTable(selector, journeyJson) {
+  var columns = addAllColumnHeaders(journeyJson, selector);
 
-var hardcodeJourneys = '[{"id":1,"type":"BUS","latitude":51.658607,"longitude":51.658607,"departure_stop_name":"Den Dungen, Dungens Molen","arrival_stop_name":"Den Bosch"},{"id":2,"type":"type TODO","latitude":51.658607,"longitude":5.371466,"departure_stop_name":"Den Dungen, Dungens Molen","arrival_stop_name":"ARRIVAL TODO"},{"id":3,"type":"type TODO","latitude":51.658607,"longitude":5.371466,"departure_stop_name":"Den Dungen, Dungens Molen","arrival_stop_name":"ARRIVAL TODO"}]'
-var hardcodeJourneysJSON = JSON.parse(hardcodeJourneys);
-
-
-function buildHtmlTable(selector) {
-  var columns = addAllColumnHeaders(hardcodeJourneysJSON, selector);
-
-  for (var i = 0; i < hardcodeJourneysJSON.length; i++) {
-  console.log(hardcodeJourneysJSON[i]);
+  for (var i = 0; i < journeyJson.length; i++) {
+  console.log(journeyJson[i]);
   
     var row$ = $('<tr/>');
     for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-      var cellValue = hardcodeJourneysJSON[i][columns[colIndex]];
+      var cellValue = journeyJson[i][columns[colIndex]];
       if (cellValue == null) cellValue = "";
       row$.append($('<td/>').html(cellValue));
     }
     $(selector).append(row$);
   }
 }
+
 
 function addAllColumnHeaders(myList, selector) {
   var columnSet = [];
@@ -106,4 +95,21 @@ function addAllColumnHeaders(myList, selector) {
 }
 
 
+
+function getJourneys() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             var hardcodeJourneys = this.responseText;
+             //'[{"id":1,"type":"BUS","latitude":51.658607,"longitude":51.658607,"departure_stop_name":"Den Dungen, Dungens Molen","arrival_stop_name":"Den Bosch"},{"id":2,"type":"type TODO","latitude":51.658607,"longitude":5.371466,"departure_stop_name":"Den Dungen, Dungens Molen","arrival_stop_name":"ARRIVAL TODO"},{"id":3,"type":"type TODO","latitude":51.658607,"longitude":5.371466,"departure_stop_name":"Den Dungen, Dungens Molen","arrival_stop_name":"ARRIVAL TODO"}]'
+             var journeyJson = JSON.parse(hardcodeJourneys);
+             buildHtmlTable('#excelDataTable', journeyJson);
+             
+         }
+    };
+    xhttp.open("POST", "http://localhost:8080/journeys/journey", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(params);
+}
+getJourneys();
 
