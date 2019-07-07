@@ -3,6 +3,8 @@ package com.transportation.app;
 import lombok.Setter;
 import lombok.Getter;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,8 +21,8 @@ public class Journey {
 	private double longitude;
 	// private string departure_time;
 	// private string duration;
-	private String departure_stop_name;
-	private String arrival_stop_name;
+	private String arrival;
+	private String destination;
 	
 	public Journey createJourneyFromJson(JSONObject journey) {
 		
@@ -39,10 +41,18 @@ public class Journey {
 		
 		String departure_stop_name = (String) stop.get("TimingPointName");
 		System.out.println("Departure_stop_name: " + departure_stop_name);
-		this.departure_stop_name = departure_stop_name;
+		this.destination = departure_stop_name;
 		
-		this.type = "type TODO";
-		this.arrival_stop_name = "ARRIVAL TODO";
+		
+		JSONObject passes = (JSONObject) journey.get("Passes");
+		System.out.println("PASSES: " + passes);
+		Set<String> keys = passes.keySet();
+		
+		for(String key: keys )
+		{
+			JSONObject pass = (JSONObject) passes.get(key);
+			this.arrival =(String) pass.get("DestinationName50");
+		}
 		
 		return this;
 	}

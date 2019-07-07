@@ -27,9 +27,9 @@ public class JourneyController {
         return journeyService.list();
     }
   
-    @CrossOrigin(origins = "http://localhost:9000")
-    @GetMapping("/lines")
-    public Iterable<JourneyLine> lines() {
-        return journeyService.lines();
+    @RequestMapping("/journey")
+    public Iterable<Journey> journey(@RequestParam(value="arrival", defaultValue="") String arrival, @RequestParam(value="destination", defaultValue="") String destination) {
+    	return journeyService.findByLocations(arrival, destination);
     }
+  
 }

@@ -22,10 +22,11 @@ public class JourneyService {
     }
     
     public Iterable<JourneyLine> lines() {
-    	System.out.println("HEREEEEEE");
         return lineRepository.findAll();
     }
-
+    public Iterable<Journey> findByLocations(String arrival, String destination) {
+        return journeyRepository.findByParams(arrival, destination);
+    }
 
     public Iterable<Journey> save(List<Journey> journeys) {
         return journeyRepository.save(journeys);
