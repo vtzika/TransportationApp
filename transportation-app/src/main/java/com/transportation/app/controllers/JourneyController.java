@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/journeys")
 public class JourneyController {
 	
@@ -21,7 +21,7 @@ public class JourneyController {
         this.journeyService = journeyService;
     }
     
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/list")
     public Iterable<Journey> list() {
         return journeyService.list();
@@ -29,6 +29,7 @@ public class JourneyController {
   
     @RequestMapping("/journey")
     public Iterable<Journey> journey(@RequestParam(value="arrival", defaultValue="") String arrival, @RequestParam(value="destination", defaultValue="") String destination) {
+    	System.out.println("HERE IT IS" + arrival);
     	return journeyService.findByLocations(arrival, destination);
     }
   

@@ -1,5 +1,3 @@
-console.log("HERE I AM ")
-
 
 function getUrlVars() {
     var vars = {};
@@ -33,6 +31,41 @@ window.onload = function() {
 }
 }
 
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+var from = getUrlVars()["from"];
+var to = getUrlVars()["to"];
+if (from == 'from1') { var from = "Foppingadreef 22"; }
+if (from == 'from2') { var from = "Gustav Mahlerlaan"; }
+if (from == 'from3') { var from = "CCA Noord"; }
+if (from == 'from4') { var from = "CCA Zuid"; }
+if (to == 'to1') { var to = "Foppingadreef 22"; }
+if (to == 'to2') { var to = "Gustav Mahlerlaan"; }
+if (to == 'to3') { var to = "CCA Noord"; }
+if (to == 'to4') { var to = "CCA Zuid"; }
+document.write("<tr><td>From<br>" + from + "</td><td></td><td>To<br>" + to + "</td></tr>");
+
+
+console.log("FROM: ", from)
+console.log("TO: ", to)
+
+var params = '{"arrival": "' + from + '", "destination": "'+ to + '"}';
+
+var request = new XMLHttpRequest();
+request.open('POST', 'http://localhost:8080/journeys/journey', true);
+request.setRequestHeader("Content-Type", "application/json");
+
+request.onload = function () {
+var journeys = JSON.parse(this.response);
+ console.log("JOURNEYS");
+ console.log(journeys);
+}
+request.send(params);
 
 var hardcodeJourneys = '[{"id":1,"type":"BUS","latitude":51.658607,"longitude":51.658607,"departure_stop_name":"Den Dungen, Dungens Molen","arrival_stop_name":"Den Bosch"},{"id":2,"type":"type TODO","latitude":51.658607,"longitude":5.371466,"departure_stop_name":"Den Dungen, Dungens Molen","arrival_stop_name":"ARRIVAL TODO"},{"id":3,"type":"type TODO","latitude":51.658607,"longitude":5.371466,"departure_stop_name":"Den Dungen, Dungens Molen","arrival_stop_name":"ARRIVAL TODO"}]'
 var hardcodeJourneysJSON = JSON.parse(hardcodeJourneys);
@@ -74,11 +107,3 @@ function addAllColumnHeaders(myList, selector) {
 
 
 
-var request = new XMLHttpRequest();
-request.open('GET', 'localhost:8080/journeys/list', true);
-request.onload = function () {
-var journeys = JSON.parse(this.response);
- console.log("JOURNEYS");
- console.log(journeys);
-}
-request.send();
