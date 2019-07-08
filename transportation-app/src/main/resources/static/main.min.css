@@ -219,6 +219,24 @@ html{
 	-webkit-box-shadow:0 0;
 	box-shadow:0 0
 }
+table#excelDataTable {
+	width: 1200;
+	position: relative;
+	margin-top: 20;
+	float:left;
+	padding-left: 0;
+	border: none;
+}
+table#excelDataTable tr:nth-child(even) {
+  background-color: #eee;
+}
+table#excelDataTable tr:nth-child(odd) {
+ background-color: #fff;
+}
+table#excelDataTable th { 
+  background-color: #343a40;
+  color: white;
+}
 /*!* Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)* Copyright 2011-2017 The Bootstrap Authors* Copyright 2011-2017 Twitter, Inc.* Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)*/
 :root{
 	--blue:#007bff;
