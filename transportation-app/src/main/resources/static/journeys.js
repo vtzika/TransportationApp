@@ -58,10 +58,9 @@ var hardcodeJourneysJSON = "";
   var columns = addAllColumnHeaders(journeyJson, selector);
 
   for (var i = 0; i < journeyJson.length; i++) {
-  console.log(journeyJson[i]);
   
     var row$ = $('<tr/>');
-    for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+    for (var colIndex = 1; colIndex < columns.length; colIndex++) {
       var cellValue = journeyJson[i][columns[colIndex]];
       if (cellValue == null) cellValue = "";
       row$.append($('<td/>').html(cellValue));
@@ -72,7 +71,7 @@ var hardcodeJourneysJSON = "";
 
 
 function addAllColumnHeaders(myList, selector) {
-  var columnSet = [];
+  var columnSet = ["id"];
   var headerTr$ = $('<tr/>');
 
   for (var i = 1; i < myList.length; i++) {
