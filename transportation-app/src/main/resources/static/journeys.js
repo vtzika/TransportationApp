@@ -48,11 +48,6 @@ if (to == 'to1') { var to = "Foppingadreef 22"; }
 if (to == 'to2') { var to = "Gustav Mahlerlaan"; }
 if (to == 'to3') { var to = "CCA Noord"; }
 if (to == 'to4') { var to = "CCA Zuid"; }
-document.write("<tr><td>From<br>" + from + "</td><td></td><td>To<br>" + to + "</td></tr>");
-
-
-console.log("FROM: ", from)
-console.log("TO: ", to)
 
 var params = '{"arrival": "' + from + '", "destination": "'+ to + '"}';
 
@@ -80,7 +75,7 @@ function addAllColumnHeaders(myList, selector) {
   var columnSet = [];
   var headerTr$ = $('<tr/>');
 
-  for (var i = 0; i < myList.length; i++) {
+  for (var i = 1; i < myList.length; i++) {
     var rowHash = myList[i];
     for (var key in rowHash) {
       if ($.inArray(key, columnSet) == -1) {

@@ -70,11 +70,9 @@ class LoadDatabase {
 			Object obj = parser.parse(new FileReader(myFile.getCanonicalPath()));
 			JSONObject jsonObject = (JSONObject) obj;	
 			
-			//-----
 			Set<String> keys = jsonObject.keySet();
 			for(String key: keys )
 			{
-				System.out.println(key);
 				JSONObject timePoint = (JSONObject) jsonObject.get(key);
 				JSONObject passes = (JSONObject) timePoint.get("Passes");
 
