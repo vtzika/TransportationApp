@@ -72,6 +72,7 @@ var hardcodeJourneysJSON = "";
 
 function addAllColumnHeaders(myList, selector) {
   var columnSet = ["id"];
+  var beautifulColumns  = {"lineName": "Line Name", "lineNumber": "Line Number", "type": "Type", "departure_time": "Departure Time", "arrival_time": "Arrival Time", "arrival": "Arrival", "destination": "Destination"};
   var headerTr$ = $('<tr/>');
 
   for (var i = 1; i < myList.length; i++) {
@@ -79,7 +80,8 @@ function addAllColumnHeaders(myList, selector) {
     for (var key in rowHash) {
       if ($.inArray(key, columnSet) == -1) {
         columnSet.push(key);
-        headerTr$.append($('<th/>').html(key));
+        var exposedKey = beautifulColumns[key];
+        headerTr$.append($('<th/>').html(exposedKey));
       }
     }
   }
@@ -87,7 +89,6 @@ function addAllColumnHeaders(myList, selector) {
 
   return columnSet;
 }
-
 
 
 function getJourneys() {
